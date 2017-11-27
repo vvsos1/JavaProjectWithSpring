@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>JavaProject</display-name>
+	<welcome-file-list>
+		<welcome-file>jsp/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<filter>
+		<filter-name>permissionFilter</filter-name>
+		<filter-class>org.dimigo.filter.PermissionFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>permissionFilter</filter-name>
+		<url-pattern>/freeboard/write.do</url-pattern>
+		<url-pattern>/freeboard/modify.do</url-pattern>
+		<url-pattern>/freeboard/list.do</url-pattern>
+		<url-pattern>/freeboard/read.do</url-pattern>
+		<url-pattern>/freeboard/delete.do</url-pattern>
+		<url-pattern>/jsp/chatting.jsp</url-pattern>
+	</filter-mapping>
+	
+	<listener>
+	<listener-class>org.dimigo.listener.InitListener</listener-class>
+	</listener>
+</web-app>
