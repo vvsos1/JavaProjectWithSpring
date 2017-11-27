@@ -35,6 +35,7 @@ public class ActionServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		try {
+			System.out.println(getServletContext().getRealPath("/WEB-INF/applicationContext.xml"));
 			context = new FileSystemXmlApplicationContext(getServletContext().getRealPath("/WEB-INF/applicationContext.xml"));
 			Properties prop = new Properties();
 			prop.load(new FileReader(new File(getServletContext().getRealPath("/WEB-INF/actionMapping.properties"))));
