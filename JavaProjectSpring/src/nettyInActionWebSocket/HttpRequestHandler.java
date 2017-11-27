@@ -65,8 +65,8 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
 	public static final int HTTP_CACHE_SECONDS = 60;
 
 	private final String wsUri;
-	public static final String DOCUMENT_ROOT = "C:/eclipse/workspace/JavaProjectSpring/WebContent";
-	public static final String FILE_ROOT = "C:/eclipse/workspace/JavaProjectSpring/uploadFile";
+	public static final String DOCUMENT_ROOT = "C:/Users/박명규/git/JavaProjectWithSpring/JavaProjectSpring/WebContent";
+	public static final String FILE_ROOT = "C:/Users/박명규/git/JavaProjectWithSpring/JavaProjectSpring/uploadFile";
 
 //	static{
 //		String temp = HttpRequestHandler.class.getResource("").getPath();
