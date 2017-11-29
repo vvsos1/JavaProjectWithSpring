@@ -29,10 +29,10 @@
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active"><a class="nav-link"
 				href="${contextPath}/jsp/index.jsp">Home <span class="sr-only">(current)</span></a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="${contextPath}/jsp/hobby.jsp">Hobby</a></li>
 			<li class="nav-item"><a class="nav-link "
 				href="${contextPath}/freeboard/list.do">Board</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${contextPath}/jsp/chatting.jsp">Chatting</a></li>
 			<li class="nav-item"><a class="nav-link "
 				href="${contextPath}/jsp/dream.html">Dream</a></li>
 		</ul>
@@ -43,7 +43,8 @@
 					${sessionScope.user.name }님 로그인 중
 					<button class="btn btn-outline-dark" data-toggle="modal"
 					data-target="#myInfoModal">MyPage</button>
-					<button type="submit" class="btn btn-outline-dark" onclick="logout()">Logout</button>
+				<button type="submit" class="btn btn-outline-dark"
+					onclick="logout()">Logout</button>
 			</c:if>
 			<c:if test="${sessionScope.user == null }">
 				<form class="form-inline my-2 my-lg-0" id="loginForm"
@@ -73,6 +74,6 @@
 <%@include file="myInfoModal.jsp"%>
 <c:if test="${ error != null }">
 	<script>
-		alertModal('error', "${error.message}");
+		alertModal('error', "${error}");
 	</script>
 </c:if>

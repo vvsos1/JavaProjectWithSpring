@@ -26,10 +26,15 @@ public class InitListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent ctx) {
 		startWebSocketServer();
+		
 	}
 
 	private void startWebSocketServer() {
-		new Thread(() -> {ChatServer.main(new String[]{"9000"});}).start();
+		final Thread thread = new Thread(() -> {ChatServer.main(new String[]{"9000"});});
+		thread.start();
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			thread.interrupt();
+		}));
 	}
 
 
