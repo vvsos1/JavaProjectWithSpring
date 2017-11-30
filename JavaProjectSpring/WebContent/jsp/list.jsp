@@ -11,12 +11,7 @@
 
 <title>vvsos1's Blog</title>
 
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-	crossorigin="anonymous">
-
+<%@include file="common.jsp"%>
 </head>
 
 <!-- 웹페이지 처음 로딩때도 세션이 있는지 확인-->

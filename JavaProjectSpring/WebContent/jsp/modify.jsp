@@ -10,13 +10,7 @@
 <meta name="author" content="">
 
 <title>vvsos1's Blog</title>
-
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-	crossorigin="anonymous">
-
+<%@include file="common.jsp"%>
 </head>
 
 <body>
@@ -29,10 +23,11 @@
 	<div class="container"
 		style="border-radius: .3rem; padding: 10rem 2rem; transform: scale(1.2);">
 		<form method="post" action="${contextPath }/freeboard/modify.do">
-			<input type="hidden" name="articleNumber" value="${article.article.number}">
+			<input type="hidden" name="articleNumber"
+				value="${article.article.number}">
 			<div class="form-group">
-				<label for="exampleFormControlInput1">제목</label> <input
-					type="text" class="form-control" id="exampleFormControlInput1"
+				<label for="exampleFormControlInput1">제목</label> <input type="text"
+					class="form-control" id="exampleFormControlInput1"
 					placeholder="title" name="title" value="${article.article.title }">
 			</div>
 			<div class="form-group">

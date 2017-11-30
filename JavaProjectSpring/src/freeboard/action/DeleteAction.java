@@ -33,6 +33,7 @@ public class DeleteAction implements IAction {
 
 	@Override
 	public void processForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
 		DeleteRequest deleteRequest = toDeleteRequest(request);
 
 		deleteRequest.validate();
@@ -41,5 +42,10 @@ public class DeleteAction implements IAction {
 
 		// 포워딩 필요
 		response.sendRedirect(request.getContextPath() + SUCCESS_FORM);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("error", e.getMessage());
+			forward(request, response, "/jsp/index.jsp");
+		}
 	}
 }

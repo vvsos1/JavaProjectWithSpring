@@ -35,11 +35,11 @@ public class ActionServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		try {
-			System.out.println(getServletContext().getRealPath("/WEB-INF/applicationContext.xml"));
 			context = new FileSystemXmlApplicationContext(getServletContext().getRealPath("/WEB-INF/applicationContext.xml"));
+			// 구름 IDE용
+//			context = new FileSystemXmlApplicationContext("JavaProjectSpring/WebContent/WEB-INF/applicationContext.xml");
 			Properties prop = new Properties();
 			prop.load(new FileReader(new File(getServletContext().getRealPath("/WEB-INF/actionMapping.properties"))));
-
 			for (Entry<Object, Object> entry : prop.entrySet()) {
 				System.out.println(entry.getKey() + " : " +entry.getValue());
 				IAction action = (IAction) context.getBean(Class.forName((String) entry.getValue()));

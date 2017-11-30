@@ -43,6 +43,8 @@ public class ModifyAction implements IAction{
 		response.sendRedirect(request.getContextPath()+SUCCESS_FORM);
 		} catch (Exception e) {
 			e.printStackTrace();
+			request.setAttribute("error", e.getMessage());
+			forward(request, response, "/jsp/index.jsp");
 		}
 	}
 	
@@ -57,7 +59,8 @@ public class ModifyAction implements IAction{
 		forward(request, response, VIEW_FORM);
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			request.setAttribute("error", e.getMessage());
+			forward(request, response, "/jsp/index.jsp");
 		}
 	}
 	

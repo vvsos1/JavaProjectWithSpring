@@ -29,7 +29,7 @@ public class FileService {
 		File[] files = root.listFiles();
 		
 		for(File file : files) {
-			if (file.isDirectory())
+			if (file.isDirectory() && file.listFiles().length != 0 )
 				result.add(file.getName());
 		}
 		
@@ -43,8 +43,8 @@ public class FileService {
 
 		List<String> result = new ArrayList<>();
 		
-		File root = new File(FILE_ROOT+"/uploader");
-		if (root.exists()) {
+		File root = new File(FILE_ROOT+"/"+uploader);
+		if (!root.exists() || root.listFiles() == null) {
 			throw new Exception("없는 업로더입니다");
 		}
 		File[] files = root.listFiles();

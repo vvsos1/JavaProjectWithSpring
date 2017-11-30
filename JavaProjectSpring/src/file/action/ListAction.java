@@ -1,5 +1,9 @@
 package file.action;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,11 +38,32 @@ public class ListAction implements IAction{
 		}
 	}
 
-	private void showFileList(HttpServletRequest request, HttpServletResponse response) {
+	private void showFileList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
 		
+		List<String> result = service.listFile(request.getParameter("uploader"));
+		
+		request.setAttribute("result", result);
+		request.getRequestDispatcher("/jsp/fileList.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("error", e.getMessage());
+			request.getRequestDispatcher("/jsp/uploaderList.jsp").forward(request, response);
+		}
 	}
 
-	private void showUploaderList(HttpServletRequest request, HttpServletResponse response) {
+	private void showUploaderList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		try {
+			
+			List<String> result = service.listUploader();
+			
+			request.setAttribute("result", result);
+			request.getRequestDispatcher("/jsp/uploaderList.jsp").forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("error", e.getMessage());
+				request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+			}
 		
 	}
 }

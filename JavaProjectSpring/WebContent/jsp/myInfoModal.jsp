@@ -68,7 +68,7 @@
 					<!--번호-->
 					<div class="form-group">
 						<label class="form-control-label" for="studentId">번호</label> <input
-							type="text" class="form-control" id="studentId2" name="studentId"
+							type="number" class="form-control" id="studentId2" name="studentId"
 							required value="${user.number }">
 					</div>
 					<!--이름-->

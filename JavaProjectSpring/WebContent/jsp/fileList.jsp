@@ -8,19 +8,11 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<%@include file="common.jsp"%>
 <title>vvsos1's Blog</title>
 
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-	crossorigin="anonymous">
-
-</head>
 
 <!-- 웹페이지 처음 로딩때도 세션이 있는지 확인-->
-
 <body>
 
 	<!-- NavBar -->
@@ -35,59 +27,21 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">업로더</th>
+						<th scope="col">${param.uploader }</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="uploader" items="${ result }"
-						varStatus="status">
+					<c:forEach var="file" items="${ result }" varStatus="status">
 						<tr>
 							<th scope="row">${status.count }</th>
-							<td><a
-								href="${contextPath }/file/list.do?uploader=${uploader}">${uploader}</a></td>
+							<td><a download="${file }"
+								href="http://<%=request.getLocalAddr() %>:9000/?mode=fileDownload&fileUploader=${param.uploader}&fileName=${file}&requester=${user.id}">${file}</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-		<div class="pagination" style="display: inline;">
-			<c:if test="${ result != null }">
-				<ul class="pagination justify-content-center">
-					<c:if test="${ result.currentPage > 1 }">
-						<li class="page-item"><a class="page-link"
-							href="${contextPath}/freeboard/list.do?page=${ result.currentPage - 1}"
-							tabindex="-1">Previous</a></li>
-					</c:if>
-					<c:if test="${ result.currentPage == 1 }">
-						<li class="page-item disabled"><a class="page-link"
-							tabindex="-1">Previous</a></li>
-					</c:if>
-					<c:forEach var="item" begin="1" end="${ result.totalPage }"
-						varStatus="status">
-						<c:if test="${ status.count == result.currentPage }">
-							<li class="page-item active"><a class="page-link"
-								href="${contextPath}/freeboard/list.do?page=${ status.count}">${status.count}</a></li>
-						</c:if>
-						<c:if test="${ status.count != result.currentPage }">
-							<li class="page-item"><a class="page-link"
-								href="${contextPath}/freeboard/list.do?page=${ status.count}">${status.count}</a></li>
-						</c:if>
-					</c:forEach>
-					<c:if test="${ result.currentPage >= result.totalPage  }">
-						<li class="page-item disabled"><a class="page-link"
-							tabindex="-1">Next</a></li>
-					</c:if>
-					<c:if test="${ result.currentPage < result.totalPage }">
-						<li class="page-item"><a class="page-link"
-							href="${contextPath}/freeboard/list.do?page=${ result.currentPage + 1}"
-							tabindex="-1">Next</a></li>
-					</c:if>
-				</ul>
-			</c:if>
-		</div>
-		<button type="button" class="btn btn-dark"
-			onclick="location.href='${contextPath}/freeboard/write.do'"
-			style="transform: scale(0.8); float: right; display: inline;">글쓰기</button>
+
 	</div>
 
 	<hr>

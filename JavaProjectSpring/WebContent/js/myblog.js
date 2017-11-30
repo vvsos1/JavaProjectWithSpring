@@ -3,19 +3,19 @@ $(document).ready(function() {
 		// 자동 submit되는 기능을 막음
 		event.preventDefault();
 
-		var id = document.getElementById('id').value;
-		var pwd = document.getElementById('password').value;
-		var classroom = $("select[name=class]").val();
-		var grade = $(":input:radio[name=grade]:checked").val();
-		var number = document.getElementById('studentId').value;
-		var name = document.getElementById('studentName').value;
+		var id = $('#id1').val();
+		var pwd = $('#password1').val();
+		var classroom = $("select[name=class1]").val();
+		var grade = $(":input:radio[name=grade1]:checked").val();
+		var number = $('#studentId1').val();
+		var name = $('#studentName1').val();
 
 		console.log('id : ' + id);
-		console.log('password : ' + password);
+		console.log('password : ' + pwd);
 		console.log('classroom : ' + classroom);
 		console.log('grade : ' + grade);
-		console.log('studentId : ' + studentId);
-		console.log('studentName : ' + studentName);
+		console.log('studentId : ' + number);
+		console.log('studentName : ' + name);
 
 		// 입력칸 중 빈칸이 있는 경우
 		// if (id == "" || pwd == "" || classroom == "" || grade == "" || number
@@ -38,7 +38,7 @@ $(document).ready(function() {
 				// 회원가입 성공 Modal 띄우기
 				alertModal("회원가입 정보", data.userName + "님 회원가입되었습니다.");
 				// 회원가입 성공했으므로 폼에 있는 데이터 삭제
-				document.regForm.reset();
+				$('#password1').val('');
 			} else if (data.result == "fail") { // 회원가입에 실패한 경우
 				alertModal("회원가입 정보", data.msg);
 				document.regForm.password.reset();

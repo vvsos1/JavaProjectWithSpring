@@ -93,7 +93,13 @@ public class FreeBoardService {
 	public ArticlePage list(int page) throws Exception {
 		try {
 		List<Article> list = boardDao.select((page - 1) * ARTICLE_PER_PAGE, ARTICLE_PER_PAGE);
-		int totalPage = ((int) boardDao.count() / ARTICLE_PER_PAGE) + 1;
+		int count = boardDao.count();
+		int totalPage;
+		if (count%ARTICLE_PER_PAGE == 0)
+			totalPage = (count / ARTICLE_PER_PAGE);
+		else {
+			totalPage = (count / ARTICLE_PER_PAGE) + 1;
+		}
 
 		return new ArticlePage(totalPage, page, list);
 		} catch (Exception e) {
@@ -158,6 +164,9 @@ public class FreeBoardService {
 			// 요청을 커밋
 			conn.commit();
 
+		} catch (PermissionDeniedException e) {
+			CommonUtil.rollback(conn);
+			throw e;
 		} catch (Exception e) {
 			CommonUtil.rollback(conn);
 			throw new Exception("글 삭제에 실패했습니다.", e);

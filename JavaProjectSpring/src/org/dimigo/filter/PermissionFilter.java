@@ -42,7 +42,7 @@ public class PermissionFilter implements Filter {
 		UserVo user = (UserVo) session.getAttribute("user");
 		if (user == null) {
 //			String requestUrl = req.getRequestURL().toString();
-			request.setAttribute("error", new Exception("로그인 후 이용해주세요"));
+			request.setAttribute("error", "로그인 후 이용해주세요.");
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/index.jsp");
 			rd.forward(request, response);
 		} else {
