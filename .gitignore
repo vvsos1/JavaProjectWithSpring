@@ -1,0 +1,15 @@
+*.zip
+
+classes
+
+.vscode
+
+.settings
+
+build
+
+.classpath
+
+.project
+
+log.txt

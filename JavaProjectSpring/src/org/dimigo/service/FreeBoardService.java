@@ -43,6 +43,7 @@ public class FreeBoardService {
 
 	private static final int ARTICLE_PER_PAGE = 10;
 
+	
 	public int write(WriteRequest request) throws Exception {
 		// Spring이 쓰레드 당 1개의 커넥션을 보장해줌
 		TransactionSynchronizationManager.initSynchronization();
@@ -131,7 +132,7 @@ public class FreeBoardService {
 
 			return result; // 읽어온 게시판 내용을 리턴
 
-		} catch (Exception e) {
+		}catch (Exception e) {
 			CommonUtil.rollback(conn);
 			throw new Exception("글 내용 조회에 실패했습니다",e);
 		} finally {

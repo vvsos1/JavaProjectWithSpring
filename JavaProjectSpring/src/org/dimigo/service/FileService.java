@@ -32,6 +32,7 @@ public class FileService {
 			if (file.isDirectory() && file.listFiles().length != 0 )
 				result.add(file.getName());
 		}
+//		Arrays.asList(files).stream().filter(f -> f.isDirectory()).filter(f -> (f.listFiles().length != 0)).forEach(f-> result.add(f.getName()));
 		
 		return result;
 		} catch (Exception e) {

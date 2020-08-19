@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/chatting.css">
-    <title>Insert title here</title>
+    <title>Chatting</title>
 </head>
 
 <body>
@@ -41,64 +41,63 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
     var imgDataURI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfhCh4GIxalSuQIAAACiklEQVRIx5XVS2jUVxTH8c+MEYOJbQg+mjRalFqpoNRAfWB9IEXREi2IuLG4KLYUi5SCm0JFFxW6cS+ibqINRXQTfNDaikpbA4KJRsEsBgxtHCnFTZjYMTkuMpmZTP4mk/Pf/M/vnu85995zuTclyepsscNyTZowYMBDl/1mUBW2zHlDIuEbct6yyvDUOK/RCfvMQNYVtw3IYoEmH9luAYa1+9Z/ybVXyQihz9aKxKOltuoTQsaqJLxNTsg7rva1y6t1XF7IaascWm1Q6LJyyj1aqUsYtLpcbJEVbplVzS6b5ZaQ1VKSOoTHGqvCRzf7sdAx5q4XwoaqcdgghPWjzjWhfVo4tAvXYK68sCIxaLYffDNOabCx8LdCyJvLAeFRIt7srjCsvqh8oF/YUvAeCQfS1qIzAW/VpRVpNQVll9taZNwr+J1Ym9aMzAT8Uze97WmZcthFdf6wpniQM2imW9hZgR82LPzpPSE0mOm0ENrHnZSdQjc9FQnGgn9Sq0EIS9wQRnxfUaZNuE+ncKgoNvpdCMekKCR4IuTsnbDMr4SrNfqxuNikvyz1wufOlQUulLXLnQkJFuOf0TwPC9LHwrOx84V6I0KPRYlt7hW+ZJ680ArStntrXNBRp8xJxJcLL82HK8JJ07Uzwq+ldgxbNy38QyPC5jH3ktA7yU1UaXP0CBdKQrPnwi9mV4XXuCr8651y8RNDwo0qUrzrupAr61XBtskJX08Kz/SdnPDC7qThTTq8Pwm+0QMh9FtTElOJoS0OqpeRkZEvPCw7LEL42SHPJptmnWMGE5+2vIuvubnK5rPf30LodtZ1fYb874k7ztrjzakbdEQIWV9IF1OmpsZK9pmsH70xHeQVs0btYVvk5OsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTctMTAtMzBUMDY6MzU6MjIrMDE6MDCbdQLkAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE3LTEwLTMwVDA2OjM1OjIyKzAxOjAw6ii6WAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=';
-    var Message;
-    Message = function (arg) {
-        this.text = arg.text, this.message_side = arg.message_side; this.from = arg.from; this.fileInfo = arg.fileInfo;
-        this.draw = function (_this) {
-            return function () {
-                var $message;
-                $message = $($('.message_template').clone().html());
+    // var Message;
+    // Message = function (arg) {
+    //     this.text = arg.text, this.message_side = arg.message_side; this.from = arg.from; this.fileInfo = arg.fileInfo;
+    //     this.draw = function (_this) {
+    //         return function () {
+    //             var $message;
+    //             $message = $($('.message_template').clone().html());
 
-                if (_this.from != null) {
-                    $message.find('.text_wrapper').click(function () {
-                        $(".message_input").val('/귓속말 ' + _this.from + " ");
-                        $(".message_input").focus();
-                    });
-                }
+    //             if (_this.from != null) {
+    //                 $message.find('.text_wrapper').click(function () {
+    //                     $(".message_input").val('/귓속말 ' + _this.from + " ");
+    //                     $(".message_input").focus();
+    //                 });
+    //             }
 
-                // if (_this.fileInfo != null) {
-                //     $message.find('.text_wrapper').click(function () {
-                //         _this.fileInfo.id = id;
-                //         var worker = new Worker('fileDownload.js');
-
-                //         worker.onmessage = function (arg) {
-                //             var file = arg.data;
-
-                //             var url = URL.createObjectURL(file);
-
-                //             console.log("데이터 크기 : " + file.size + " 다운로드 URL : " + url + " 이름 : " + file.name + " 타입 : " + file.type);
-                //             var anchor = $('<a/>', {
-                //                 download: arg.fileName,
-                //                 href: url
-                //             });
-                //             $message.find('.text').html('<a href="'+url+'" download="'+_this.fileInfo.fileName+'">다운로드</a>');
-                //         }
-
-                //         worker.postMessage(_this.fileInfo);
-                        
-                //     });
-                // }
-
-                $message.addClass(_this.message_side).find('.text').html(_this.text);
+    //             $message.addClass(_this.message_side).find('.text').html(_this.text);
 
 
 
-                $('.messages').append($message);
-                return setTimeout(function () {
-                    return $message.addClass('appeared');
-                }, 0);
-            };
-        }(this);
-        return this;
-    };
-    var getMessageText, message_side, sendMessage;
-    message_side = 'right';
-    getMessageText = function () {
-        var $message_input;
-        $message_input = $('.message_input');
-        return $message_input.val();
-    };
-    sendMessage = function (arg) {
+    //             $('.messages').append($message);
+    //             return setTimeout(function () {
+    //                 return $message.addClass('appeared');
+    //             }, 0);
+    //         };
+    //     }(this);
+    //     return this;
+    // };
+
+    class Message {
+        constructor({text, message_side, from, fileInfo}) {
+            this.text = text;
+            this.message_side = message_side;
+            this.from = from;
+            this.fileInfo = fileInfo;
+        }
+
+        draw() {
+            var $message;
+            $message = $($('.message_template').clone().html());
+
+            if (_this.from != null) {
+                $message.find('.text_wrapper').click(function () {
+                    $(".message_input").val('/귓속말 ' + _this.from + " ");
+                    $(".message_input").focus();
+                });
+            }
+            $message.addClass(_this.message_side).find('.text').html(_this.text);
+
+            $('.messages').append($message);
+            return setTimeout(function () {
+                return $message.addClass('appeared');
+            }, 0);
+        }
+    }
+
+    
+    const showMessage = function (arg) {
         var $messages, message;
 
         $('.message_input').val('');
@@ -109,11 +108,11 @@
         return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
     };
     $('.send_message').click(function (e) {
-        return send(getMessageText());
+        return send($('.message_input').val());
     });
     $('.message_input').keyup(function (e) {
         if (e.which === 13) {
-            return send(getMessageText());
+            return send($('.message_input').val());
         }
     });
 
@@ -167,13 +166,13 @@
         var jsonMessage = JSON.parse(message.data);
         if (jsonMessage.mode == "general") {
             if (jsonMessage.id == id) {
-                sendMessage({
+                showMessage({
                     text: jsonMessage.message,
                     message_side: "right"
                 });
 
             } else {
-                sendMessage({
+                showMessage({
                     text: jsonMessage.message,
                     message_side: "left",
                     from: jsonMessage.id
@@ -181,14 +180,14 @@
             }
         } else if (jsonMessage.mode == "whisper") {
             jsonMessage.message = "from " + jsonMessage.from + ":" + jsonMessage.message;
-            sendMessage(jsonMessage.message, "whisper", jsonMessage.from);
-            sendMessage({
+            showMessage(jsonMessage.message, "whisper", jsonMessage.from);
+            showMessage({
                 text: jsonMessage.message,
                 message_side: "whisper",
                 from: jsonMessage.from
             });
         } else if (jsonMessage.mode == "notify") {
-            sendMessage({
+            showMessage({
                 text: jsonMessage.message,
                 message_side: "left"
             });
@@ -204,13 +203,13 @@
     }
 
     function fileUploadComplete(jsonMessage) {
-        console.log(jsonMessage.fileUploader+':'+jsonMessage.fileName+' <a download="'+jsonMessage.fileName+'" href="/?mode=fileDownload&fileUploader='+jsonMessage.fileUploader + '&fileName=' + jsonMessage.fileName + '&requester= ' + id+'">다운로드</a>');
+        console.log(jsonMessage.fileUploader + ':' + jsonMessage.fileName + ' <a download="' + jsonMessage.fileName + '" href="/?mode=fileDownload&fileUploader=' + jsonMessage.fileUploader + '&fileName=' + jsonMessage.fileName + '&requester= ' + id + '">다운로드</a>');
         var arg = {
-            text: jsonMessage.fileUploader+':'+jsonMessage.fileName+' <a download="'+jsonMessage.fileName+'" href="/?mode=fileDownload&fileUploader='+jsonMessage.fileUploader + '&fileName=' + jsonMessage.fileName + '&requester= ' + id+'">다운로드</a>',
+            text: jsonMessage.fileUploader + ':' + jsonMessage.fileName + '  &nbsp;<a download="' + jsonMessage.fileName + '" href="/?mode=fileDownload&fileUploader=' + jsonMessage.fileUploader + '&fileName=' + jsonMessage.fileName + '&requester= ' + id + '"><img src="../image/download.png" style="height:30px;width:auto"></a>',
             message_side: "left",
             fileInfo: jsonMessage
         }
-        sendMessage(arg);
+        showMessage(arg);
     }
 
     //웹 소켓이 연결되었을 때 호출되는 이벤트

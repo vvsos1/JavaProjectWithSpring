@@ -67,7 +67,8 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
 	private final String wsUri;
 	public static final String DOCUMENT_ROOT = "C:/Users/박명규/git/JavaProjectWithSpring/JavaProjectSpring/WebContent";
 	public static final String FILE_ROOT = "C:/Users/박명규/git/JavaProjectWithSpring/JavaProjectSpring/uploadFile";
-
+//	public static final String DOCUMENT_ROOT = "/goormService/tomcat7/webapps/WebContainer/JavaProjectSpring/WebContent";
+//	public static final String FILE_ROOT = "/goormService/tomcat7/webapps/WebContainer/JavaProjectSpring/uploadFile";
 //	static{
 //		String temp = HttpRequestHandler.class.getResource("").getPath();
 //		temp = temp.substring(temp.indexOf('/')+1, temp.length());

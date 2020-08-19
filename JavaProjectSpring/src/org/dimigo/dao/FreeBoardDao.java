@@ -81,15 +81,15 @@ public class FreeBoardDao {
 	}
 
 	public int count() {
-		return jdbcTemplate.queryForInt("SELECT COUNT(*) FROM FREEBOARD");
+		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM FREEBOARD",Integer.class);
 	}
 	
 	public int selectPreviousNumber(int number) {
-		return jdbcTemplate.queryForInt("SELECT MAX(NUMBER) FROM FREEBOARD WHERE NUMBER < ?",new Object[]{number});
+		return jdbcTemplate.queryForInt("SELECT MAX(NUMBER) FROM FREEBOARD WHERE NUMBER < ?",number);
 	}
 	
 	public int selectNextNumber(int number) {
-		return jdbcTemplate.queryForInt("SELECT MIN(NUMBER) FROM FREEBOARD WHERE NUMBER > ?",new Object[]{number});
+		return jdbcTemplate.queryForInt("SELECT MIN(NUMBER) FROM FREEBOARD WHERE NUMBER > ?",number);
 	}
 
 	private Date toDate(Timestamp regDate) {

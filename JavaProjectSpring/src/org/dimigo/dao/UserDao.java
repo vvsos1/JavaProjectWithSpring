@@ -1,12 +1,12 @@
 package org.dimigo.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 import user.vo.UserVo;
 
@@ -23,36 +23,32 @@ import user.vo.UserVo;
  */
 public class UserDao {
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	private RowMapper<UserVo> rowMapper = new RowMapper<UserVo>() {
-		@Override
-		public UserVo mapRow(ResultSet rs, int count) throws SQLException {
-			return new UserVo(rs.getString("id"), rs.getString("pwd"), rs.getString("grade"), rs.getString("classroom"),
-					rs.getString("number"), rs.getString("name"));
-		}
-	};
+	private SimpleJdbcTemplate SimpleJdbcTemplate;
+	private RowMapper<UserVo> rowMapper = new BeanPropertyRowMapper<>(UserVo.class);
 
 	public UserVo searchUser(UserVo vo) {
-		return jdbcTemplate.queryForObject("SELECT * FROM USER WHERE ID = ? AND PWD = ?",
-				new Object[] { vo.getId(), vo.getPwd() }, rowMapper);
+		return SimpleJdbcTemplate.queryForObject("SELECT * FROM USER WHERE ID = :id AND PWD = :pwd", rowMapper,
+				new BeanPropertySqlParameterSource(vo));
 	}
 
 	public List<UserVo> searchUserList() {
-		return jdbcTemplate.query("SELECT * FROM USER", rowMapper);
+		return SimpleJdbcTemplate.query("SELECT * FROM USER", rowMapper);
 	}
 
 	public int insertUser(UserVo vo) {
-		return jdbcTemplate.update("INSERT INTO USER (ID, PWD, NAME, GRADE, CLASSROOM, NUMBER) VALUES(?,?,?,?,?,?)",
-				vo.getId(), vo.getPwd(), vo.getName(), vo.getGrade(), vo.getClassroom(), vo.getNumber());
+		return SimpleJdbcTemplate.update(
+				"INSERT INTO USER (ID, PWD, NAME, GRADE, CLASSROOM, NUMBER) VALUES(:id,:pwd,:name,:grade,:classroom,:number)",
+				new BeanPropertySqlParameterSource(vo));
 	}
 
 	public UserVo searchUserById(UserVo vo) {
-		return jdbcTemplate.queryForObject("SELECT * FROM USER WHERE ID = ?", new Object[] { vo.getId() }, rowMapper);
+		return SimpleJdbcTemplate.queryForObject("SELECT * FROM USER WHERE ID = :id", rowMapper,
+				new BeanPropertySqlParameterSource(vo));
 	}
 
 	public int update(UserVo vo) {
-		return jdbcTemplate.update(
-				"UPDATE USER SET PWD = ?, NAME = ?, GRADE = ? ,CLASSROOM = ?, NUMBER = ? WHERE ID = ?", vo.getPwd(),
-				vo.getName(), vo.getGrade(), vo.getClassroom(), vo.getNumber(), vo.getId());
+		return SimpleJdbcTemplate.update(
+				"UPDATE USER SET PWD = :pwd, NAME = :name, GRADE = :grade ,CLASSROOM = :classroom, NUMBER = :number WHERE ID = :id",
+				new BeanPropertySqlParameterSource(vo));
 	}
 }

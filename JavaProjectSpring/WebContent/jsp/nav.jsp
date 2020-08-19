@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-	<a class="navbar-brand" href="index.html">Blog</a>
+	<a class="navbar-brand" href="${contextPath }/jsp/index.jsp">Blog</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarsExampleDefault"
 		aria-controls="navbarsExampleDefault" aria-expanded="false"
